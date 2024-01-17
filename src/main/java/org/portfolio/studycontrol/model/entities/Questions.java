@@ -6,7 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.portfolio.studycontrol.model.entities.enums.DificultType;
+import org.portfolio.studycontrol.enums.DifficultType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +18,13 @@ import java.util.List;
 @Setter
 public class Questions {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
-    @OneToMany(mappedBy = "question")
-    private List<Alternative> alternatives = new ArrayList<>();
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String text;
-    private DificultType dificultType;
+    private String response;
+    @OneToMany(mappedBy = "question")
+    private List<Alternative>alternatives = new ArrayList<>();
     @ManyToOne
-    private Topics topic;
+    Topic topic;
+    DifficultType difficult;
 }
